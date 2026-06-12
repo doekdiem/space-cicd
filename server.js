@@ -8,6 +8,12 @@ app.get("/hello", (req, res) => {
     })
 })
 
+app.get("/hi", (req, res) => {
+    res.status(200).json({
+        message: "Hi, i am doekdiem",
+    })
+})
+
 app.listen("3000", () => {
     console.log("Server is running...")
 })
