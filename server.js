@@ -14,6 +14,12 @@ app.get("/hi", (req, res) => {
     })
 })
 
+app.get("/dev", (req, res) => {
+    res.status(200).json({
+        message: "developing...",
+    })
+})
+
 app.listen("3000", () => {
     console.log("Server is running...")
 })
