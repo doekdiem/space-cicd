@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - main
+    pull_request:
 
 jobs:
     test:
@@ -17,3 +18,19 @@ jobs:
                 node-version: 22
 
             - run: npm ci
+    deploy:
+        needs: test
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Deploy to server
+              uses: appleboy/ssh-action@v1
+              with:
+                host: ${{secrets.HOST}}
+                username: ${{secrets.USERNAME}}
+                key: ${{secrets.SSH_KEY}}
+                script: |
+                    cd /home/doekdiem/space-cicd
+                    git pull origin main
+                    npm ci
+                    pm2 restart space-cicd
