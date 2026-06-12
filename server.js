@@ -1,5 +1,7 @@
 import express from "express"
 
+const PORT = 3124
+
 const app = express()
 
 app.get("/hello", (req, res) => {
@@ -20,6 +22,6 @@ app.get("/dev", (req, res) => {
     })
 })
 
-app.listen("3000", () => {
-    console.log("Server is running...")
+app.listen(PORT, () => {
+    console.log(`Server is running at port ${PORT}...`)
 })
